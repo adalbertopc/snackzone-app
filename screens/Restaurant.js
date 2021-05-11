@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
 	StyleSheet,
 	SafeAreaView,
@@ -9,6 +9,7 @@ import {
 	Animated,
 } from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { CartContext } from '../src/contexts/CartContext';
 
 import { icons, COLORS, SIZES, FONTS } from '../constants';
 
@@ -17,10 +18,11 @@ const Restaurant = ({ route, navigation }) => {
 	const [restaurant, setRestaurant] = React.useState(null);
 	const [currentLocation, setCurrentLocation] = React.useState(null);
 	const [orderItems, setOrderItems] = React.useState([]);
+	const { state, dispatch } = useContext(CartContext);
+	const [currentProduct, setCurrentProduct] = useState({});
 
 	React.useEffect(() => {
 		let { item, currentLocation } = route.params;
-
 		setRestaurant(item);
 		setCurrentLocation(currentLocation);
 	});
@@ -43,7 +45,6 @@ const Restaurant = ({ route, navigation }) => {
 				};
 				orderList.push(newItem);
 			}
-
 			setOrderItems(orderList);
 		} else {
 			if (item.length > 0) {
@@ -366,12 +367,15 @@ const Restaurant = ({ route, navigation }) => {
 								alignItems: 'center',
 								borderRadius: SIZES.radius,
 							}}
-							onPress={() =>
-								navigation.navigate('OrderDelivery', {
-									restaurant: restaurant,
-									currentLocation: currentLocation,
-								})
-							}
+							onPress={() => {
+								//console.log(...orderItems);
+								dispatch({
+									type: 'ADD_TO_CART',
+									payload: {
+										products: [...orderItems],
+									},
+								});
+							}}
 						>
 							<Text style={{ color: COLORS.white, ...FONTS.h2 }}>Ordenar</Text>
 						</TouchableOpacity>
