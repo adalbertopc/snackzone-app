@@ -146,7 +146,7 @@ const Restaurant = ({ route, navigation }) => {
 				<View style={{ height: SIZES.height * 0.35 }}>
 					{/* Food Image */}
 					<Image
-						source={item.photo}
+						source={{ uri: item.image }}
 						resizeMode='cover'
 						style={{
 							width: SIZES.width,
@@ -225,32 +225,6 @@ const Restaurant = ({ route, navigation }) => {
 						{item.name} - {item.price.toFixed(2)}
 					</Text>
 					<Text style={{ ...FONTS.body3 }}>{item.description}</Text>
-				</View>
-
-				{/* Calories */}
-				<View
-					style={{
-						flexDirection: 'row',
-						marginTop: 10,
-					}}
-				>
-					<Image
-						source={icons.fire}
-						style={{
-							width: 20,
-							height: 20,
-							marginRight: 10,
-						}}
-					/>
-
-					<Text
-						style={{
-							...FONTS.body3,
-							color: COLORS.darygray,
-						}}
-					>
-						{item.calories.toFixed(2)} cal
-					</Text>
 				</View>
 			</View>
 		);
