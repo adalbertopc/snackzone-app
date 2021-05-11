@@ -51,8 +51,7 @@ const Home = ({ navigation }) => {
 				style={{ marginBottom: SIZES.padding * 2 }}
 				onPress={() =>
 					navigation.navigate('Restaurant', {
-						item,
-						currentLocation,
+						item: item,
 					})
 				}
 			>
@@ -71,23 +70,6 @@ const Home = ({ navigation }) => {
 							borderRadius: SIZES.radius,
 						}}
 					/>
-
-					<View
-						style={{
-							position: 'absolute',
-							bottom: 0,
-							height: 50,
-							width: SIZES.width * 0.3,
-							backgroundColor: COLORS.white,
-							borderTopRightRadius: SIZES.radius,
-							borderBottomLeftRadius: SIZES.radius,
-							alignItems: 'center',
-							justifyContent: 'center',
-							...styles.shadow,
-						}}
-					>
-						<Text style={{ ...FONTS.h4 }}>{item.duration}</Text>
-					</View>
 				</View>
 
 				{/* Restaurant Info */}
@@ -101,25 +83,6 @@ const Home = ({ navigation }) => {
 					}}
 				>
 					<Text style={{ ...FONTS.body2 }}>{item.name}</Text>
-					{/* Rating */}
-					<View
-						style={{
-							flexDirection: 'row',
-							alignItems: 'center',
-							justifyContent: 'space-between',
-						}}
-					>
-						<Image
-							source={icons.star}
-							style={{
-								height: 20,
-								width: 20,
-								tintColor: COLORS.primary,
-								marginRight: 10,
-							}}
-						/>
-						<Text style={{ ...FONTS.body3 }}>{item.rating}</Text>
-					</View>
 				</View>
 			</TouchableOpacity>
 		);
