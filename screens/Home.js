@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
 	SafeAreaView,
 	View,
@@ -9,7 +9,8 @@ import {
 	FlatList,
 } from 'react-native';
 
-import { icons, SIZES, COLORS, FONTS, categoryData, restaurantData } from '../constants';
+import { SIZES, COLORS, FONTS } from '../constants';
+import { ProductsContext } from '../src/contexts/ProductsContext';
 
 const Home = ({ navigation }) => {
 	// Dummy Datas
@@ -22,6 +23,8 @@ const Home = ({ navigation }) => {
 		},
 	};
 
+	const { data, isLoading } = useContext(ProductsContext);
+	console.log(data);
 	const [restaurants, setRestaurants] = React.useState(restaurantData);
 	const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation);
 
@@ -48,11 +51,11 @@ const Home = ({ navigation }) => {
 	function renderRestaurantList() {
 		const renderItem = ({ item }) => (
 			<TouchableOpacity
+				key={item.id}
 				style={{ marginBottom: SIZES.padding * 2 }}
 				onPress={() =>
 					navigation.navigate('Restaurant', {
-						item,
-						currentLocation,
+						item: item,
 					})
 				}
 			>
@@ -63,7 +66,7 @@ const Home = ({ navigation }) => {
 					}}
 				>
 					<Image
-						source={item.photo}
+						source={{ uri: item.image }}
 						resizeMode='cover'
 						style={{
 							width: '100%',
@@ -71,23 +74,6 @@ const Home = ({ navigation }) => {
 							borderRadius: SIZES.radius,
 						}}
 					/>
-
-					<View
-						style={{
-							position: 'absolute',
-							bottom: 0,
-							height: 50,
-							width: SIZES.width * 0.3,
-							backgroundColor: COLORS.white,
-							borderTopRightRadius: SIZES.radius,
-							borderBottomLeftRadius: SIZES.radius,
-							alignItems: 'center',
-							justifyContent: 'center',
-							...styles.shadow,
-						}}
-					>
-						<Text style={{ ...FONTS.h4 }}>{item.duration}</Text>
-					</View>
 				</View>
 
 				{/* Restaurant Info */}
@@ -101,33 +87,17 @@ const Home = ({ navigation }) => {
 					}}
 				>
 					<Text style={{ ...FONTS.body2 }}>{item.name}</Text>
-					{/* Rating */}
-					<View
-						style={{
-							flexDirection: 'row',
-							alignItems: 'center',
-							justifyContent: 'space-between',
-						}}
-					>
-						<Image
-							source={icons.star}
-							style={{
-								height: 20,
-								width: 20,
-								tintColor: COLORS.primary,
-								marginRight: 10,
-							}}
-						/>
-						<Text style={{ ...FONTS.body3 }}>{item.rating}</Text>
-					</View>
 				</View>
 			</TouchableOpacity>
 		);
 
 		return (
 			<FlatList
-				data={restaurants}
-				keyExtractor={(item) => `${item.id}`}
+				data={data}
+				keyExtractor={(item) => {
+					console.log(item);
+					return `${item.id}`;
+				}}
 				renderItem={renderItem}
 				contentContainerStyle={{
 					paddingHorizontal: SIZES.padding * 2,
