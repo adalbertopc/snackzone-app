@@ -14,7 +14,6 @@ import { CartContext } from '../src/contexts/CartContext';
 import { icons, COLORS, SIZES, FONTS } from '../constants';
 
 const Restaurant = ({ route, navigation }) => {
-	const scrollX = new Animated.Value(0);
 	const [item, setItem] = useState(route.params.item);
 	const [orderItems, setOrderItems] = React.useState([]);
 	const { state, dispatch } = useContext(CartContext);
@@ -25,9 +24,9 @@ const Restaurant = ({ route, navigation }) => {
 		// setCurrentLocation(currentLocation);
 	});
 
-	function editOrder(action, menuId, price) {
+	function editOrder(action, _id, price, image, name) {
 		let orderList = orderItems.slice();
-		let item = orderList.filter((a) => a.menuId == menuId);
+		let item = orderList.filter((a) => a._id == _id);
 
 		if (action == '+') {
 			if (item.length > 0) {
@@ -36,10 +35,12 @@ const Restaurant = ({ route, navigation }) => {
 				item[0].total = item[0].qty * price;
 			} else {
 				const newItem = {
-					menuId: menuId,
+					_id: _id,
 					qty: 1,
 					price: price,
 					total: price,
+					image: image,
+					name: name,
 				};
 				orderList.push(newItem);
 			}
@@ -57,8 +58,8 @@ const Restaurant = ({ route, navigation }) => {
 		}
 	}
 
-	function getOrderQty(menuId) {
-		let orderItem = orderItems.filter((a) => a.menuId == menuId);
+	function getOrderQty(_id) {
+		let orderItem = orderItems.filter((a) => a._id == _id);
 
 		if (orderItem.length > 0) {
 			return orderItem[0].qty;
@@ -174,7 +175,9 @@ const Restaurant = ({ route, navigation }) => {
 								borderTopLeftRadius: SIZES.radius,
 								borderBottomLeftRadius: SIZES.radius,
 							}}
-							onPress={() => editOrder('-', item.menuId, item.price)}
+							onPress={() =>
+								editOrder('-', item._id, item.price, item.image, item.name)
+							}
 						>
 							<Text style={{ ...FONTS.body1 }}>-</Text>
 						</TouchableOpacity>
@@ -187,7 +190,7 @@ const Restaurant = ({ route, navigation }) => {
 								justifyContent: 'center',
 							}}
 						>
-							<Text style={{ ...FONTS.h2 }}>{getOrderQty(item.menuId)}</Text>
+							<Text style={{ ...FONTS.h2 }}>{getOrderQty(item._id)}</Text>
 						</View>
 
 						<TouchableOpacity
@@ -199,7 +202,9 @@ const Restaurant = ({ route, navigation }) => {
 								borderTopRightRadius: SIZES.radius,
 								borderBottomRightRadius: SIZES.radius,
 							}}
-							onPress={() => editOrder('+', item.menuId, item.price)}
+							onPress={() =>
+								editOrder('+', item._id, item.price, item.image, item.name)
+							}
 						>
 							<Text style={{ ...FONTS.body1 }}>+</Text>
 						</TouchableOpacity>
@@ -333,7 +338,9 @@ const Restaurant = ({ route, navigation }) => {
 								});
 							}}
 						>
-							<Text style={{ color: COLORS.white, ...FONTS.h2 }}>Ordenar</Text>
+							<Text style={{ color: COLORS.white, ...FONTS.h2 }}>
+								Agregar al carrito
+							</Text>
 						</TouchableOpacity>
 					</View>
 				</View>

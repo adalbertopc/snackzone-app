@@ -8,26 +8,14 @@ import Tabs from './navigation/tabs';
 import { ProductsContext } from './src/contexts/ProductsContext';
 import { CartContext } from './src/contexts/CartContext';
 import { useFetch } from './hooks/useFetch';
-// import CartReducer from './src/contexts/cartReducer';
+import CartReducer from './src/contexts/cartReducer';
 
 const Stack = createStackNavigator();
-const cartReducer = (state = [], action) => {
-	//console.log(state, action);
-	switch (action.type) {
-		case 'ADD_TO_CART':
-			return [...state, ...action.payload.products];
-		case 'REMOVE_FROM_CART':
-			return state.filter((product) => product.menuId !== action.menuId);
-
-		default:
-			throw new Error();
-	}
-};
 
 const App = () => {
 	const initialState = [];
 	const { data, isLoading } = useFetch('products');
-	const [cartProducts, dispatch] = useReducer(cartReducer, initialState);
+	const [cartProducts, dispatch] = useReducer(CartReducer, initialState);
 	return (
 		<ProductsContext.Provider value={{ data, isLoading }}>
 			<CartContext.Provider value={{ cartProducts, dispatch }}>

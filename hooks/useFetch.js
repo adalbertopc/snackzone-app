@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from 'react';
+import { SERVER_URL } from 'react-native-dotenv';
 import { types } from '../constants/types';
 
 const dataFetchReducer = (state, action) => {
@@ -30,7 +31,7 @@ export const useFetch = (endpoint) => {
 		data: [],
 	});
 
-	const url = `https://b1a77c400915.ngrok.io/${endpoint}`;
+	const url = `${SERVER_URL}/${endpoint}`;
 	// const headers = {
 	//     headers: {
 	//         'auth-token': getAuthCookie(),
@@ -48,10 +49,11 @@ export const useFetch = (endpoint) => {
 					},
 				});
 
-				const data = await response.json();
+				const { data } = await response.json();
+
 				dispatch({
 					type: types.FETCH_SUCCESS,
-					payload: data.data,
+					payload: data,
 				});
 			} catch (e) {
 				console.log(e);

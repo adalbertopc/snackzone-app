@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
 	};
 
 	const { data, isLoading } = useContext(ProductsContext);
-	console.log(data);
+	// console.log(data);
 	const [restaurants, setRestaurants] = React.useState(restaurantData);
 	const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation);
 
@@ -51,7 +51,7 @@ const Home = ({ navigation }) => {
 	function renderRestaurantList() {
 		const renderItem = ({ item }) => (
 			<TouchableOpacity
-				key={item.id}
+				key={item._id}
 				style={{ marginBottom: SIZES.padding * 2 }}
 				onPress={() =>
 					navigation.navigate('Restaurant', {
@@ -94,10 +94,7 @@ const Home = ({ navigation }) => {
 		return (
 			<FlatList
 				data={data}
-				keyExtractor={(item) => {
-					console.log(item);
-					return `${item.id}`;
-				}}
+				keyExtractor={(item) => `${item._id}`}
 				renderItem={renderItem}
 				contentContainerStyle={{
 					paddingHorizontal: SIZES.padding * 2,
