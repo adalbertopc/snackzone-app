@@ -1,15 +1,22 @@
-import React, { useEffect, useContext } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, Image, TouchableOpacity, Modal, StyleSheet, Pressable } from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
 import { COLORS, FONTS, icons, SIZES } from '../constants';
+import { OrderForm } from '../src/components/OrderForm';
 import { CartContext } from '../src/contexts/CartContext';
 
 export const Cart = () => {
 	const { cartProducts, dispatch } = useContext(CartContext);
+	const [modalVisible, setModalVisible] = useState(false);
 
 	return (
 		<View style={{ flex: 1 }}>
+			<OrderForm
+				modalVisible={modalVisible}
+				setModalVisible={setModalVisible}
+				products={cartProducts}
+			/>
 			<Text style={{ ...FONTS.h1 }}>Carrito Screen</Text>
 			<View style={{ flex: 1, flexDirection: 'column' }}>
 				{/* Header  */}
@@ -134,7 +141,7 @@ export const Cart = () => {
 									}}
 									onPress={() => {
 										//console.log(...orderItems);
-										console.log('hello');
+										setModalVisible(true);
 									}}
 								>
 									<Text style={{ color: COLORS.white, ...FONTS.h2 }}>
