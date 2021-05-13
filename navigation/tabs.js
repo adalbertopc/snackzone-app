@@ -4,7 +4,7 @@ import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom
 import Svg, { Path } from 'react-native-svg';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
-import { Cart, Home, Map, User } from '../screens';
+import { Cart, Home, Map } from '../screens';
 
 import { COLORS, icons } from '../constants';
 
@@ -142,24 +142,6 @@ const Tabs = () => {
 					tabBarIcon: ({ focused }) => (
 						<Image
 							source={icons.basket}
-							resizeMode='contain'
-							style={{
-								width: 25,
-								height: 25,
-								tintColor: focused ? COLORS.primary : COLORS.secondary,
-							}}
-						/>
-					),
-					tabBarButton: (props) => <TabBarCustomButton {...props} />,
-				}}
-			/>
-			<Tab.Screen
-				name='User'
-				component={User}
-				options={{
-					tabBarIcon: ({ focused }) => (
-						<Image
-							source={icons.user}
 							resizeMode='contain'
 							style={{
 								width: 25,
