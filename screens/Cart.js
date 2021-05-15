@@ -22,7 +22,7 @@ export const Cart = () => {
 						setModalVisible={setModalVisible}
 						products={cartProducts}
 					/>
-					<Text style={{ ...FONTS.h1 }}>Carrito</Text>
+					<Text style={{ ...FONTS.h1, padding: 10 }}>Carrito</Text>
 					<View style={{ flex: 1, flexDirection: 'column' }}>
 						{/* Header  */}
 						<View
@@ -81,9 +81,37 @@ export const Cart = () => {
 										source={{ uri: product.image }}
 										style={{ width: 50, height: 50, borderRadius: 5 }}
 									/>
-									<Text style={{ fontSize: 20, marginLeft: 10 }}>
-										{product.name}
-									</Text>
+									<View
+										style={{
+											flexDirection: 'row',
+											alignItems: 'center',
+										}}
+									>
+										<Text style={{ fontSize: 20, marginLeft: 10 }}>
+											{product.name}
+										</Text>
+										<Pressable
+											onPress={() => {
+												dispatch({
+													type: 'REMOVE_FROM_CART',
+													payload: {
+														_id: product._id,
+													},
+												});
+											}}
+											style={{ marginLeft: 10 }}
+										>
+											<Image
+												source={icons.cross}
+												resizeMode='contain'
+												style={{
+													width: 15,
+													height: 15,
+													tintColor: 'red',
+												}}
+											/>
+										</Pressable>
+									</View>
 								</View>
 								<View
 									style={{

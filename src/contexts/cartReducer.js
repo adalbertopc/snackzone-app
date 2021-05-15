@@ -15,7 +15,7 @@ export default CartReducer = (state = [], action) => {
 			});
 			return productFound ? [...newState] : [...newState, productPayload];
 		case 'REMOVE_FROM_CART':
-			return state.filter((product) => product._id !== action._id);
+			return state.filter((product) => product._id !== action.payload._id);
 		case 'CLEAN_CART':
 			return [];
 		default:
