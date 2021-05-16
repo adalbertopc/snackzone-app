@@ -13,20 +13,7 @@ import { SIZES, COLORS, FONTS } from '../constants';
 import { ProductsContext } from '../src/contexts/ProductsContext';
 
 const Home = ({ navigation }) => {
-	// Dummy Datas
-
-	const initialCurrentLocation = {
-		streetName: 'Adal',
-		gps: {
-			latitude: 1.5496614931250685,
-			longitude: 110.36381866919922,
-		},
-	};
-
 	const { data, isLoading } = useContext(ProductsContext);
-	// console.log(data);
-	const [restaurants, setRestaurants] = React.useState(restaurantData);
-	const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation);
 
 	function renderHeader() {
 		return (
@@ -41,7 +28,7 @@ const Home = ({ navigation }) => {
 							paddingHorizontal: 20,
 						}}
 					>
-						<Text style={{ ...FONTS.h3 }}>SnackZone</Text>
+						<Text style={{ ...FONTS.h3 }}>SnacksZone</Text>
 					</View>
 				</View>
 			</View>
