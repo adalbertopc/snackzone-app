@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "FoodDeliveryApp-tvOS.app"
-               BlueprintName = "FoodDeliveryApp-tvOS"
-               ReferencedContainer = "container:FoodDeliveryApp.xcodeproj">
+               BuildableName = "SnacksZone-tvOS.app"
+               BlueprintName = "SnacksZone-tvOS"
+               ReferencedContainer = "container:SnacksZone.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "FoodDeliveryApp-tvOSTests.xctest"
-               BlueprintName = "FoodDeliveryApp-tvOSTests"
-               ReferencedContainer = "container:FoodDeliveryApp.xcodeproj">
+               BuildableName = "SnacksZone-tvOSTests.xctest"
+               BlueprintName = "SnacksZone-tvOSTests"
+               ReferencedContainer = "container:SnacksZone.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "FoodDeliveryApp-tvOS.app"
-            BlueprintName = "FoodDeliveryApp-tvOS"
-            ReferencedContainer = "container:FoodDeliveryApp.xcodeproj">
+            BuildableName = "SnacksZone-tvOS.app"
+            BlueprintName = "SnacksZone-tvOS"
+            ReferencedContainer = "container:SnacksZone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "FoodDeliveryApp-tvOS.app"
-            BlueprintName = "FoodDeliveryApp-tvOS"
-            ReferencedContainer = "container:FoodDeliveryApp.xcodeproj">
+            BuildableName = "SnacksZone-tvOS.app"
+            BlueprintName = "SnacksZone-tvOS"
+            ReferencedContainer = "container:SnacksZone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
