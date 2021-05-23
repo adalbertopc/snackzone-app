@@ -61,7 +61,7 @@ export const useFetch = (endpoint) => {
 			}
 		};
 		fetchData();
-	}, [url]);
+	}, []);
 
 	return state;
 };
